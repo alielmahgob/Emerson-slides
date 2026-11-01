@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo \"=== <head> section \\(first 250 lines\\) ===\")",
+      "Bash(echo \"=== where does <style> end / body begin ===\")",
+      "Bash(awk 'NR>=9320 && NR<=12052 && \\(/=========/ || /<!-- Slide/ || /wasl-section|class=\"\"reveal\"\"|scrum-slide|cisco-slide|slide-ba|slide-spss/\\)' index.html)",
+      "Bash(awk 'NR>=9320 && NR<=12052 && /====/' index.html)",
+      "Bash(for p in wasl-cover wasl-problem wasl-sp wasl-d3 cisco scrum slide-ba slide-spss)",
+      "Bash(do printf \"%-12s sections: \" \"$p\")",
+      "Bash(grep -c \"class=\"\"[^\"\"]*$p\" index.html)",
+      "Bash(done)",
+      "Bash(rm -rf js css gulpfile.js package.json package-lock.json .npmignore .codespellrc test examples demo.html figures .github CONTRIBUTING.md LICENSE README.md plugin/math plugin/search plugin/zoom)",
+      "Bash(find . -name '.DS_Store' -not -path './.git/*' -delete)",
+      "Bash(python3 -c \"import yaml,sys; yaml.safe_load\\(open\\(''.github/workflows/pages.yml''\\)\\); print\\(''YAML valid''\\)\")"
+    ]
+  }
+}

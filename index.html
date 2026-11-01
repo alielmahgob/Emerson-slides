@@ -4,373 +4,1013 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Presentation Title</title>
+		<title>Emerson: Industrial Marketing &amp; Strategy</title>
 
-		<!-- Fonts: Montserrat (UI/headings) + Fraunces (serif accents & numbers). Swap here to re-theme. -->
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-		<!-- reveal.js core + theme -->
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/black.css">
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 
-		<!-- Shared template infrastructure (resets, animation system, figure helpers) -->
 		<link rel="stylesheet" href="core.css">
 
 		<!-- ===================================================================
-		     Per-deck styles. Everything below is scoped to this deck's slides.
-		     THEME TOKENS — change these to re-theme the whole deck:
-		       --bg      #FDF8F3   page background
-		       --bg-2    #F7EFE4   secondary surface
-		       --ink     #2A2622   primary text
-		       --accent  #E8844A   ember (primary accent)
-		       --accent2 #7BA888   sage  (secondary accent)
-		       --muted   #7A7168   muted text
+		     EMERSON THEME — anchored on the Emerson logo blue (#004685),
+		     matching the teammate's navy / blue / cyan / orange house style.
+		     Flat, corporate, industrial. NO gradient "AI" backgrounds.
 		     ================================================================= -->
 		<style>
 			:root {
-				--bg: #FDF8F3;
-				--bg-2: #F7EFE4;
-				--ink: #2A2622;
-				--accent: #E8844A;
-				--accent2: #7BA888;
-				--muted: #7A7168;
+				--bg:      #0F192E;
+				--bg-2:    #172140;
+				--bg-3:    #202B4D;
+				--brand:   #0EA5E9;
+				--brand-d: #eef3fb;
+				--brand-2: #cdd8e8;
+				--accent:  #0EA5E9;
+				--cyan:    #38B4CD;
+				--ember:   #F2A65A;
+				--ink:     #d7deea;
+				--muted:   #8C99AC;
+				--line:    rgba(232,236,246,.12);
 			}
 
-			/* Base type for all slides in this deck */
-			.reveal .slides section .slide {
+			.reveal h1, .reveal h2, .reveal h3 { text-transform: none; text-shadow: none; letter-spacing: normal; }
+
+			.reveal .slides section .em-slide {
+				--fs: 1;
 				width: 100%;
+				height: 100%;
 				min-height: 100%;
 				font-family: 'Montserrat', sans-serif;
 				color: var(--ink);
 				position: relative;
 				overflow: hidden;
-			}
-
-			/* Soft decorative radial blobs (the "Wasl touch") */
-			.slide .blob {
-				position: absolute;
-				border-radius: 50%;
-				z-index: 1;
-				pointer-events: none;
-			}
-			.slide .blob-1 {
-				width: 520px;
-				height: 520px;
-				background: radial-gradient(circle, rgba(245,213,196,0.45) 0%, rgba(253,248,243,0) 70%);
-				top: -180px;
-				left: -180px;
-			}
-			.slide .blob-2 {
-				width: 700px;
-				height: 700px;
-				background: radial-gradient(circle, rgba(123,168,136,0.18) 0%, rgba(253,248,243,0) 70%);
-				bottom: -260px;
-				right: -180px;
-			}
-
-			/* ---------- Cover slide ---------- */
-			.cover {
-				justify-content: center;
-				align-items: center;
-				text-align: center;
-			}
-			.cover .content {
-				position: relative;
-				z-index: 2;
+				background: transparent;
 				display: flex;
 				flex-direction: column;
-				align-items: center;
-			}
-			.cover .eyebrow {
-				font-size: 15px;
-				letter-spacing: 0.22em;
-				text-transform: uppercase;
-				color: var(--accent2);
-				font-weight: 600;
-				margin-bottom: 18px;
-				text-align: center;
-			}
-			.cover h1 {
-				font-size: 68px;
-				font-weight: 700;
-				color: var(--ink);
-				letter-spacing: -0.02em;
-				margin: 0 0 12px 0;
-				text-align: center;
-			}
-			.cover .subtitle {
-				font-size: 26px;
-				color: var(--accent);
-				font-weight: 500;
-				margin-bottom: 22px;
-				text-align: center;
-			}
-			.cover .rule {
-				width: 70px;
-				height: 2px;
-				background-color: var(--accent);
-				border-radius: 2px;
-				margin: 0 auto;
-			}
-			.cover .footer {
-				position: absolute;
-				bottom: 28px;
-				left: 0;
-				right: 0;
-				text-align: center;
-				z-index: 2;
-			}
-			.cover .footer p {
-				font-size: 14px;
-				color: var(--muted);
-				margin: 0 0 4px 0;
-				text-align: center;
 			}
 
-			/* ---------- Shared header (content & stat slides) ---------- */
-			.slide .header {
-				position: relative;
-				z-index: 2;
-				padding: 44px 70px 10px;
+			/* running header */
+			.em-slide .em-top {
+				position: relative; z-index: 3;
+				display: flex; align-items: center; justify-content: space-between;
+				padding: 26px 56px 0;
 			}
-			.slide .header .eyebrow {
-				font-size: 13px;
-				letter-spacing: 0.2em;
-				text-transform: uppercase;
-				color: var(--accent2);
-				font-weight: 600;
-				margin-bottom: 8px;
+			.em-eyebrow { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand); font-weight: 700; }
+			.em-eyebrow .sep { color: var(--cyan); margin: 0 7px; }
+			.em-top .em-tag { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+			/* title block */
+			.em-head { position: relative; z-index: 3; padding: 10px 56px 0; }
+			.em-head h1 { font-size: 32px; font-weight: 700; line-height: 1.15; color: var(--brand-d); margin: 0; max-width: 1000px; }
+			.em-head .em-sub { font-size: 16px; font-weight: 500; color: var(--muted); margin-top: 6px; max-width: 920px; line-height: 1.35; }
+			.em-rule { width: 54px; height: 3px; background: var(--brand); border-radius: 3px; margin-top: 12px; }
+
+			/* body */
+			.em-body { position: relative; z-index: 3; flex: 1; padding: 18px 56px 16px; display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+
+			/* footer */
+			.em-foot { position: relative; z-index: 3; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 56px 18px; gap: 24px; }
+			.em-cite { font-size: 10.5px; color: var(--muted); line-height: 1.3; max-width: 940px; font-weight: 500; }
+			.em-cite b { color: var(--brand); font-weight: 700; }
+			.em-pageno { font-size: 14px; font-weight: 700; color: var(--brand); flex-shrink: 0; }
+
+			.reveal ul {
+				list-style-type: none;
 			}
-			.slide .header h1 {
-				font-size: 40px;
-				font-weight: 700;
-				line-height: 1.2;
-				max-width: 820px;
-				margin: 0;
-			}
-			.slide .header .header-rule {
-				width: 60px;
-				height: 2px;
-				background: var(--accent);
-				border-radius: 2px;
-				margin-top: 14px;
+			/* card columns */
+			.em-cols { display: flex; gap: 18px; align-items: center; min-height: 0; }
+			.em-cols.c2 > * { flex: 1; }
+			.em-cols.c3 > * { flex: 1; }
+			.em-card { background: var(--bg-2); border: 1px solid var(--line); border-top: 3px solid var(--brand); border-radius: 8px; padding: 20px 22px; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+			.em-card.alt { border-top-color: #5B6DF9; }
+			.em-card.alt2 { border-top-color: var(--cyan); }
+			.em-card.ember { border-top-color: var(--ember); }
+			.em-card h3 { font-size: calc(17px * var(--fs)); font-weight: 700; color: var(--brand-d); margin: 0 0 9px; }
+			.em-card .lbl { font-size: calc(11.5px * var(--fs)); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin: 8px 0 3px; }
+			.em-card ul { margin: 0; padding: 0; list-style: none; }
+			.em-card li { font-size: calc(14px * var(--fs)); line-height: 1.45; color: var(--ink); padding-left: 14px; position: relative; margin-bottom: 3px; }
+			.em-card li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); }
+			.em-brands { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); font-size: calc(12.5px * var(--fs)); color: var(--muted); }
+			.em-brands b { color: var(--brand-d); font-weight: 700; }
+
+			/* big bullet list */
+			.em-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+			.em-list > li { font-size: calc(20px * var(--fs)); line-height: 1.45; color: var(--ink); padding-left: 26px; position: relative; }
+			.em-list > li::before { content: ''; position: absolute; left: 0; top: 10px; width: 10px; height: 10px; border-radius: 2px; background: var(--brand); }
+			.em-list > li small { display: block; font-size: calc(15px * var(--fs)); color: var(--muted); margin-top: 3px; font-weight: 500; }
+
+			/* numbered items */
+			.em-nums { display: flex; flex-direction: column; gap: 18px; }
+			.em-num-item { display: flex; gap: 18px; align-items: flex-start; }
+			.em-num-item .n { font-size: calc(30px * var(--fs)); font-weight: 800; color: var(--brand); line-height: 1; width: 44px; flex-shrink: 0; }
+			.em-num-item .t { font-size: calc(19px * var(--fs)); line-height: 1.45; color: var(--ink); }
+			.em-num-item .t b { color: var(--brand-d); }
+			.em-num-item .t small { display:block; font-size: calc(15px * var(--fs)); color: var(--muted); margin-top: 3px; font-weight: 500; }
+
+			/* stats */
+			.em-stats { display: flex; gap: 14px; flex-wrap: wrap; }
+			.em-stat { flex: 1; min-width: 150px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 18px 18px; }
+			.em-stat .num { font-size: 42px; font-weight: 800; color: var(--brand); line-height: 1; letter-spacing: -0.02em; }
+			.em-stat .num.ember { color: var(--ember); }
+			.em-stat .lab { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.3; font-weight: 600; }
+
+			/* workflow stack */
+			.em-stack { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+			.em-stack .outcome { background: linear-gradient(100deg, rgba(14,165,233,.92), rgba(91,109,249,.92)); color: #fff; border-radius: 8px; padding: 12px 18px; text-align: center; font-size: 15px; font-weight: 600; }
+			.em-layer { display: flex; align-items: center; gap: 14px; background: var(--bg-2); border: 1px solid var(--line); border-left: 5px solid var(--brand); border-radius: 8px; padding: 11px 16px; }
+			.em-layer .ln { font-size: 15px; font-weight: 700; color: var(--brand-d); width: 180px; flex-shrink: 0; }
+			.em-layer .ld { font-size: 13px; color: var(--muted); font-weight: 500; }
+			.em-arrow-up { text-align: center; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+
+			/* timeline */
+			.em-timeline { display: flex; gap: 0; align-items: stretch; margin-top: 6px; }
+			.em-tl-node { flex: 1; position: relative; padding: 0 10px; }
+			.em-tl-node .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--brand); margin: 0 auto 12px; position: relative; z-index: 2; border: 3px solid var(--bg); box-shadow: 0 0 0 2px var(--brand); }
+			.em-tl-node.exit .dot { background: var(--muted); box-shadow: 0 0 0 2px var(--muted); }
+			.em-tl-node::before { content:''; position: absolute; top: 8px; left: 0; right: 0; height: 2px; background: var(--line); z-index: 1; }
+			.em-tl-node:first-child::before { left: 50%; }
+			.em-tl-node:last-child::before { right: 50%; }
+			.em-tl-yr { font-size: 24px; font-weight: 800; color: var(--brand); text-align: center; }
+			.em-tl-node.exit .em-tl-yr { color: var(--muted); }
+			.em-tl-ttl { font-size: 16px; font-weight: 700; color: var(--brand-d); text-align: center; margin-top: 5px; }
+			.em-tl-dsc { font-size: 13.5px; color: var(--muted); text-align: center; margin-top: 5px; line-height: 1.4; }
+
+			/* grid / matrix */
+			.em-grid { display: grid; gap: 14px; flex: 1; }
+			.em-grid.g3 { grid-template-columns: repeat(3,1fr); align-items: center; }
+			.em-grid.g2 { grid-template-columns: repeat(2,1fr); }
+			.em-cell { background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; display: flex; flex-direction: column; justify-content: center; }
+			.em-cell .ch { font-size: calc(13px * var(--fs)); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 9px; }
+			.em-cell.hl { border-top: 3px solid var(--ember); }
+			.em-cell .big { font-size: calc(16.5px * var(--fs)); font-weight: 700; color: var(--brand-d); margin-bottom: 5px; }
+			.em-cell ul { margin: 0; padding: 0; list-style: none; }
+			.em-cell li { font-size: calc(14px * var(--fs)); line-height: 1.5; color: var(--ink); padding-left: 15px; position: relative; margin-bottom: 5px; }
+			.em-cell li::before { content:''; position:absolute; left:0; top:8px; width:5px; height:5px; border-radius:50%; background: var(--cyan); }
+
+			/* table */
+			.em-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+			.em-table th { background: #132A47; color: #eaf2fb; text-align: left; padding: 17px 16px; font-size: 14.5px; font-weight: 700; }
+			.em-table td { padding: 19px 16px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: top; line-height: 1.45; }
+			.em-table tr:nth-child(even) td { background: var(--bg-2); }
+			.em-table td b { color: var(--brand-d); }
+			.reveal table th, .reveal table td {
+				padding: 10px !important;
 			}
 
-			/* ---------- Content slide (bullet list) ---------- */
-			.content-slide .body {
-				position: relative;
-				z-index: 2;
-				flex: 1;
-				padding: 20px 90px 40px;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				gap: 18px;
-			}
-			.content-slide .item {
-				display: flex;
-				align-items: flex-start;
-				gap: 18px;
-			}
-			.content-slide .item .num {
-				font-family: 'Fraunces', serif;
-				font-size: 34px;
-				font-weight: 700;
-				color: var(--accent);
-				line-height: 1;
-				width: 48px;
-				flex-shrink: 0;
-			}
-			.content-slide .item .item-text {
-				font-size: 22px;
-				line-height: 1.4;
-				color: var(--ink);
-			}
-			.content-slide .item .item-text small {
-				display: block;
-				font-size: 16px;
-				color: var(--muted);
-				margin-top: 2px;
-			}
+			/* chips */
+			.em-chips { display: flex; flex-wrap: wrap; gap: 14px; align-content: center; }
+			.em-chip { background: var(--bg-2); border: 1px solid var(--line); border-radius: 22px; padding: 12px 22px; font-size: 14px; font-weight: 600; color: var(--brand-d); }
+			.em-chip.key { background: var(--brand); color: #fff; border-color: var(--brand); }
 
-			/* ---------- Stat slide (big numbers) ---------- */
-			.stat-slide .body {
-				position: relative;
-				z-index: 2;
-				flex: 1;
-				padding: 20px 90px;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-			}
-			.stat-slide .stat {
-				display: flex;
-				align-items: center;
-				margin-bottom: 14px;
-				gap: 20px;
-			}
-			.stat-slide .stat-num {
-				font-family: 'Fraunces', serif;
-				font-size: 52px;
-				font-weight: 700;
-				color: var(--accent);
-				line-height: 1;
-				width: 220px;
-				flex-shrink: 0;
-				text-align: right;
-			}
-			.stat-slide .stat-text {
-				font-size: 22px;
-				line-height: 1.4;
-				padding-top: 6px;
-				color: var(--ink);
-			}
-			.stat-slide .quote {
-				margin-top: 14px;
-				padding: 0 60px;
-				font-family: 'Fraunces', serif;
-				font-size: 24px;
-				font-style: italic;
-				color: var(--accent2);
-				line-height: 1.4;
-				text-align: center;
-			}
+			/* two-pane */
+			.em-two { display: flex; gap: 18px; flex: 1; align-items: center; }
+			.em-two > .pane { flex: 1; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px; display: flex; flex-direction: column; justify-content: center; }
+			.em-two > .pane.b-accent { border-top: 3px solid var(--accent); }
+			.em-two > .pane.b-brand { border-top: 3px solid var(--brand); }
+			.em-two > .pane h3 { font-size: calc(18.5px * var(--fs)); font-weight: 700; color: var(--brand-d); margin: 0 0 4px; }
+			.em-two .step { font-size: calc(11px * var(--fs)); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin: 9px 0 2px; }
+			.em-two .step-txt { font-size: calc(14.5px * var(--fs)); line-height: 1.45; color: var(--ink); }
+			.em-two .caveat { margin-top: 12px; padding-top: 2px; font-size: calc(12.5px * var(--fs)); color: var(--muted); font-style: italic; }
+			.em-two ul { margin: 0; padding: 0; list-style: none; }
+			.em-two li { font-size: calc(14px * var(--fs)); line-height: 1.5; color: var(--ink); padding-left: 15px; position: relative; margin-bottom: 5px; }
+			.em-two li::before { content:''; position:absolute; left:0; top:8px; width:5px; height:5px; border-radius:50%; background: var(--cyan); }
 
-			/* ---------- Closing slide ---------- */
-			.closing {
-				justify-content: center;
-				align-items: center;
-				text-align: center;
-			}
-			.closing .content {
-				position: relative;
-				z-index: 2;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-			}
-			.closing .title {
-				font-family: 'Fraunces', serif;
-				font-size: 46px;
-				font-weight: 600;
-				color: var(--ink);
-				margin-bottom: 18px;
-				text-align: center;
-			}
-			.closing .statement {
-				font-size: 20px;
-				color: var(--muted);
-				max-width: 760px;
-				line-height: 1.6;
-				text-align: center;
-			}
-			.closing .rule {
-				width: 70px;
-				height: 2px;
-				background-color: var(--accent);
-				border-radius: 2px;
-				margin: 26px auto 0;
-			}
+			/* note */
+			.em-note { background: var(--bg-3); border-left: 4px solid var(--accent); border-radius: 0 6px 6px 0; padding: 14px 18px; font-size: calc(14.5px * var(--fs)); color: var(--brand-2); line-height: 1.5; }
+			.em-note b { color: var(--brand-d); }
+			.em-note.ember { border-left-color: var(--ember); }
+
+			/* ranked */
+			.em-ranked { display: flex; flex-direction: column; gap: 8px; flex: 1; justify-content: center; }
+			.em-rank { display: flex; gap: 16px; align-items: center; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 16px 20px; }
+			.em-rank .r { font-size: calc(26px * var(--fs)); font-weight: 800; color: var(--brand); width: 32px; flex-shrink: 0; line-height: 1; }
+			.em-rank .rc { flex: 1; }
+			.em-rank .rc .rt { font-size: calc(16.5px * var(--fs)); font-weight: 700; color: var(--brand-d); }
+			.em-rank .rc .rd { font-size: calc(14px * var(--fs)); color: var(--muted); margin-top: 4px; line-height: 1.45; }
+
+			/* process arrow row */
+			.em-flow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+			.em-flow .st { background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; padding: 9px 13px; font-size: 14px; font-weight: 600; color: var(--brand-d); }
+			.em-flow .st.b { background: var(--brand); color: #fff; border-color: var(--brand); }
+			.em-flow .ar { color: var(--cyan); font-size: 14px; }
+
+			/* statement (value prop) */
+			.em-statement { background: var(--bg-2); border: 1px solid var(--line); border-left: 5px solid var(--brand); border-radius: 10px; padding: 52px 58px; }
+			.em-statement .lead { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 20px; }
+			.em-statement p { font-size: 34px; line-height: 1.5; color: var(--brand-d); font-weight: 600; }
+
+			/* COVER */
+			.em-cover { justify-content: center; align-items: flex-start; padding: 0 70px; background: transparent; }
+			.em-cover .logo { height: 58px; margin-bottom: 30px; filter: brightness(0) invert(1); }
+			.em-cover .eyebrow { font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brand); font-weight: 700; margin-bottom: 14px; }
+			.em-cover h1 { font-size: 58px; font-weight: 800; color: var(--brand-d); line-height: 1.05; margin: 0 0 16px; letter-spacing: -0.02em; }
+			.em-cover .subtitle { font-size: 22px; color: var(--accent); font-weight: 500; margin-bottom: 20px; max-width: 760px; line-height: 1.35; }
+			.em-cover .rule { width: 72px; height: 4px; background: var(--ember); border-radius: 3px; }
+			.em-cover .meta { position: absolute; bottom: 44px; left: 70px; right: 70px; display: flex; justify-content: space-between; align-items: flex-end; }
+			.em-cover .meta p { font-size: 14px; color: var(--muted); font-weight: 500; }
+			.em-cover .meta .names { color: var(--brand-d); font-weight: 700; }
+
+			/* divider */
+			.reveal .slides section .em-divider { background: transparent; }
+			.em-divider { justify-content: center; align-items: flex-start; padding: 0 70px; }
+			.em-divider .eyebrow { font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan); font-weight: 700; margin-bottom: 14px; }
+			.em-divider h1 { font-size: 46px; font-weight: 800; color: #fff; line-height: 1.1; margin: 0 0 14px; max-width: 840px; }
+			.em-divider .subtitle { font-size: 19px; color: #AEC6D8; font-weight: 500; max-width: 720px; line-height: 1.4; }
+			.em-divider .rule { width: 72px; height: 4px; background: var(--ember); border-radius: 3px; margin-top: 18px; }
+			.em-divider .pageno { position: absolute; bottom: 36px; right: 56px; color: var(--cyan); font-weight: 700; font-size: 14px; }
+
+			/* closing */
+			.reveal .slides section .em-closing { background: transparent; }
+			.em-closing { justify-content: center; align-items: center; text-align: center; }
+			.em-closing .logo { height: 44px; margin-bottom: 26px; filter: brightness(0) invert(1); opacity: 0.95; }
+			.em-closing h1 { font-size: 52px; font-weight: 800; color: #fff; margin: 0 0 14px; text-align: center; }
+			.em-closing p { font-size: 19px; color: #AEC6D8; max-width: 680px; line-height: 1.5; text-align: center; }
+			.em-closing .rule { width: 72px; height: 4px; background: var(--ember); border-radius: 3px; margin: 22px auto 0; }
+			.em-closing .names { margin-top: 22px; font-size: 15px; color: var(--cyan); font-weight: 700; }
+
+			/* references */
+			.em-refs { columns: 2; column-gap: 40px; font-size: 11px; line-height: 1.4; color: var(--ink); }
+			.em-refs p { margin-bottom: 7px; break-inside: avoid; padding-left: 14px; text-indent: -14px; }
+			.em-refs p b { color: var(--brand); }
+
+			/* ===== SHARED DARK BACKGROUND — rendered once behind the whole deck (replicated from ai-ux-architecture) ===== */
+			html, body { background: #0F192E; }
+			.reveal { background: transparent; }
+			.reveal .slide-background { background-color: transparent !important; }
+			.deck-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: #0F192E; }
+			.deck-bg::after { content:''; position:absolute; inset:0; opacity:.05; mix-blend-mode:overlay; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+			.deck-bg .emd-glow { position: absolute; border-radius: 50%; filter: blur(24px); }
+			.deck-bg .emd-glow.a { width: 980px; height: 980px; top: -380px; right: -280px; background: radial-gradient(circle, rgba(14,165,233,.20), rgba(14,165,233,0) 62%); }
+			.deck-bg .emd-glow.b { width: 900px; height: 900px; bottom: -440px; left: -320px; background: radial-gradient(circle, rgba(91,109,249,.13), rgba(91,109,249,0) 60%); }
+			.deck-bg .emd-grid { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(232,236,246,.06) 1px, transparent 1.7px); background-size: 46px 46px; -webkit-mask-image: radial-gradient(ellipse 120% 95% at 50% 44%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 120% 95% at 50% 44%, #000 55%, transparent 100%); }
+			.bento-field { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; opacity: .32; -webkit-mask-image: radial-gradient(ellipse 122% 100% at 50% 44%, #000 60%, transparent 100%); mask-image: radial-gradient(ellipse 122% 100% at 50% 44%, #000 60%, transparent 100%); }
+			.bento-cell { position: absolute; opacity: 0; will-change: left,top,width,height,opacity; transition: left 1.9s cubic-bezier(.22,.61,.36,1), top 1.9s cubic-bezier(.22,.61,.36,1), width 1.9s cubic-bezier(.22,.61,.36,1), height 1.9s cubic-bezier(.22,.61,.36,1), opacity 1.2s cubic-bezier(.22,.61,.36,1); }
+			.bento-cell.on { opacity: 1; }
+			.bento-cell .bi { position: absolute; inset: 5px; border: 1px solid rgba(232,236,246,.13); border-radius: 9px; background: rgba(232,236,246,.022); -webkit-backdrop-filter: blur(1px); backdrop-filter: blur(1px); }
+			.bento-cell.ember .bi { animation: emdEmber 14s ease-in-out infinite; }
+			@keyframes emdEmber { 0%,100%{border-color:rgba(232,236,246,.13);box-shadow:none} 50%{border-color:rgba(14,165,233,.34);box-shadow:0 0 24px rgba(14,165,233,.11),inset 0 0 15px rgba(14,165,233,.07)} }
+			.emd-cap { color: var(--muted); }
+
+			/* per-slide font scale — tuned so the fullest box on each slide fills without overflow */
+			.reveal .slides > section:nth-child(2) .em-slide  { --fs: 1.45; } /* overview */
+			.reveal .slides > section:nth-child(6) .em-slide  { --fs: 1.58; } /* business structure */
+			.reveal .slides > section:nth-child(7) .em-slide  { --fs: 1.20; } /* segments */
+			.reveal .slides > section:nth-child(10) .em-slide { --fs: 1.32; } /* value chain */
+			.reveal .slides > section:nth-child(11) .em-slide { --fs: 1.15; } /* competitive position */
+			.reveal .slides > section:nth-child(12) .em-slide { --fs: 1.15; } /* competitors */
+			.reveal .slides > section:nth-child(13) .em-slide { --fs: 1.35; } /* differentiators */
+			.reveal .slides > section:nth-child(16) .em-slide { --fs: 1.36; } /* strategic priorities */
+			.reveal .slides > section:nth-child(17) .em-slide { --fs: 1.10; } /* M&A timeline (note) */
+			.reveal .slides > section:nth-child(18) .em-slide { --fs: 1.32; } /* M&A impact */
+			.reveal .slides > section:nth-child(19) .em-slide { --fs: 1.18; } /* innovation */
+			.reveal .slides > section:nth-child(21) .em-slide { --fs: 1.38; } /* marketing */
+			.reveal .slides > section:nth-child(22) .em-slide { --fs: 1.24; } /* communication */
+			.reveal .slides > section:nth-child(23) .em-slide { --fs: 1.20; } /* challenges */
+			.reveal .slides > section:nth-child(24) .em-slide { --fs: 1.08; } /* opportunities */
+			.reveal .slides > section:nth-child(25) .em-slide { --fs: 1.38; } /* outlook */
+			.reveal .slides > section:nth-child(26) .em-slide { --fs: 1.30; } /* conclusion */
+
+			/* static screenshot mode: ?static=1 forces all entrance elements visible */
+			.em-static .animate-on-slide { opacity: 1 !important; animation: none !important; transform: none !important; }
 		</style>
 	</head>
 
 	<body>
+		<div class="deck-bg" aria-hidden="true"><span class="emd-glow a"></span><span class="emd-glow b"></span><span class="emd-grid"></span><div class="bento-field" id="deckBento"></div></div>
 		<div class="reveal">
 			<div class="slides">
 
-				<!-- ============ Cover ============ -->
-				<section data-background-color="#FDF8F3">
-					<div class="slide cover">
-						<div class="blob blob-1"></div>
-						<div class="blob blob-2"></div>
-						<div class="content" data-animate>
-							<div class="eyebrow">Course / Subject</div>
-							<h1>Presentation Title</h1>
-							<div class="subtitle">A short, memorable subtitle.</div>
-							<div class="rule"></div>
-						</div>
-						<div class="footer">
-							<p>Your Topic Area</p>
-							<p>Presenter names go here</p>
+				<!-- =========================================================
+				     PART 1 — Emerson's business & competitive position
+				     (teammate's half, replicated in the shared theme)
+				     ========================================================= -->
+
+				<!-- 01 COVER -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide em-cover" data-animate>
+						<img class="logo" src="assets/images/emerson-logo.svg" alt="Emerson">
+						<div class="eyebrow">Industrial Marketing &amp; Strategy &middot; 2026</div>
+						<h1>Emerson</h1>
+						<div class="subtitle">A global provider of industrial automation, control technologies and software</div>
+						<div class="rule"></div>
+						<div class="meta">
+							<p class="names">Presented by Ali &amp; Christina</p>
 						</div>
 					</div>
 				</section>
 
-				<!-- ============ Content slide (numbered list) ============ -->
-				<section data-background-color="#FDF8F3">
-					<div class="slide content-slide">
-						<div class="blob blob-2"></div>
-						<div class="header animate-on-slide fade-in">
-							<div class="eyebrow">Overview</div>
-							<h1>What we'll cover today</h1>
-							<div class="header-rule"></div>
-						</div>
-						<div class="body">
-							<div class="item animate-on-slide fade-in-left">
-								<div class="num">01</div>
-								<div class="item-text">First key idea<small>A one-line supporting detail.</small></div>
-							</div>
-							<div class="item animate-on-slide fade-in-left">
-								<div class="num">02</div>
-								<div class="item-text">Second key idea<small>A one-line supporting detail.</small></div>
-							</div>
-							<div class="item animate-on-slide fade-in-left">
-								<div class="num">03</div>
-								<div class="item-text">Third key idea<small>A one-line supporting detail.</small></div>
+				<!-- 02 Company overview -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Company overview</div></div>
+						<div class="em-head"><h1>Emerson</h1><div class="em-sub">From an electrical manufacturer to a global industrial technology provider</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-cols c3">
+								<div class="em-card" data-animate><h3>Founded in 1890</h3><ul><li>Started with electric motors and fans</li><li>Expanded into industrial technology and automation over more than a century</li></ul></div>
+								<div class="em-card alt" data-animate><h3>Purpose</h3><ul><li>"Driving innovation for a healthier, safer, smarter and more sustainable world"</li><li>Guided by integrity, continuous improvement, innovation, safety &amp; quality, customer focus and collaboration</li></ul></div>
+								<div class="em-card alt2" data-animate><h3>Boundless Automation</h3><ul><li>A vision connecting industrial systems</li><li>Integrating production and cloud data</li><li>Enabling more efficient and increasingly autonomous operations</li></ul></div>
 							</div>
 						</div>
+						<div class="em-foot"><div class="em-cite">Boundless Automation <b>[4]</b>; Company History <b>[6]</b>; Investor Conference (2025) <b>[19]</b>.</div><div class="em-pageno">02</div></div>
 					</div>
 				</section>
 
-				<!-- ============ Stat slide (big numbers) ============ -->
-				<section data-background-color="#FDF8F3">
-					<div class="slide stat-slide">
-						<div class="blob blob-1"></div>
-						<div class="header animate-on-slide fade-in">
-							<div class="eyebrow">By the numbers</div>
-							<h1>Why this matters</h1>
-							<div class="header-rule"></div>
-						</div>
-						<div class="body">
-							<div class="stat animate-on-slide fade-in-right">
-								<div class="stat-num">72%</div>
-								<div class="stat-text">A striking statistic that frames the problem.</div>
+				<!-- 03 Portfolio I -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Portfolio</div></div>
+						<div class="em-head"><h1>Portfolio: products, brands and value proposition</h1><div class="em-sub">The corporate portfolio view is broader than the financial reporting segments</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-cols c3">
+								<div class="em-card" data-animate>
+									<h3>Automation Systems</h3>
+									<div class="lbl">Products &amp; solutions</div>
+									<ul><li>Process control &amp; management systems</li><li>Safety and monitoring systems</li><li>Plant management &amp; optimization software</li><li>Digital twins, industrial AI, asset performance</li></ul>
+									<div class="lbl">Customer value</div>
+									<ul><li>Grow sustainably; boost efficiency &amp; safety</li><li>Stable, future-proof processes</li></ul>
+									<div class="em-brands"><b>Brands:</b> DeltaV, Ovation, AspenTech, AMS, Guardian</div>
+								</div>
+								<div class="em-card alt" data-animate>
+									<h3>Discrete Automation</h3>
+									<div class="lbl">Product categories</div>
+									<ul><li>Pneumatics, valves, electric actuators &amp; drives</li><li>Valve monitoring, pressure regulators</li><li>Feeding &amp; handling solutions</li><li>Controllers &amp; automation components</li></ul>
+									<div class="lbl">Customer value</div>
+									<ul><li>Real-time insight: productivity &amp; safety</li><li>Optimized workflows; net-zero goals</li></ul>
+									<div class="em-brands"><b>Brands:</b> ASCO, AVENTICS, TESCOM</div>
+								</div>
+								<div class="em-card alt2" data-animate>
+									<h3>Final Control</h3>
+									<div class="lbl">Product categories</div>
+									<ul><li>Valves, actuators, regulators</li><li>Valve diagnostics &amp; condition-monitoring software</li></ul>
+									<div class="lbl">Customer value</div>
+									<ul><li>Process stability &amp; operational safety</li><li>Reliability; reduce downtime</li></ul>
+									<div class="em-brands"><b>Brands:</b> Fisher, Bettis, Keystone, Anderson Greenwood</div>
+								</div>
 							</div>
-							<div class="stat animate-on-slide fade-in-right">
-								<div class="stat-num">3x</div>
-								<div class="stat-text">A comparison that adds weight to the point.</div>
-							</div>
-							<div class="quote animate-on-slide fade-in">"A short, quotable line that lands the message."</div>
 						</div>
+						<div class="em-foot"><div class="em-cite">Automation Solutions <b>[2]</b>; Automation Systems <b>[3]</b>; Brands <b>[5]</b>; Discrete Automation <b>[7]</b>; Final Control <b>[8]</b>.</div><div class="em-pageno">03</div></div>
 					</div>
 				</section>
 
-				<!-- ============ Closing ============ -->
-				<section data-background-color="#FDF8F3">
-					<div class="slide closing">
-						<div class="blob blob-1"></div>
-						<div class="blob blob-2"></div>
-						<div class="content" data-animate>
-							<div class="title">Thank you</div>
-							<div class="statement">Questions, thoughts, and pushback all welcome.</div>
-							<div class="rule"></div>
+				<!-- 04 Portfolio II -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Portfolio</div></div>
+						<div class="em-head"><h1>Portfolio: products, brands and value proposition</h1><div class="em-sub">The corporate portfolio view is broader than the financial reporting segments</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-cols c3">
+								<div class="em-card" data-animate>
+									<h3>Measurement Instrumentation</h3>
+									<div class="lbl">Product categories</div>
+									<ul><li>Pressure measurement</li><li>Liquid analysis, level measurement</li><li>Density &amp; viscosity measurement</li><li>Gas analysis</li></ul>
+									<div class="lbl">Customer value</div>
+									<ul><li>Reliable real-time process data</li><li>Better monitoring, quality &amp; control</li><li>Safety, compliance, resource efficiency</li></ul>
+									<div class="em-brands"><b>Brands:</b> Rosemount, Micro Motion, Flexim</div>
+								</div>
+								<div class="em-card alt" data-animate>
+									<h3>Test &amp; Measurement</h3>
+									<div class="lbl">Product categories</div>
+									<ul><li>Data acquisition hardware</li><li>Modular measurement hardware</li><li>Automated test systems</li><li>Test management software</li></ul>
+									<div class="lbl">Customer value</div>
+									<ul><li>Future-proofing &amp; scalability</li><li>Productivity, speed &amp; agility</li><li>High precision &amp; flexibility</li></ul>
+									<div class="em-brands"><b>Brands:</b> NI (formerly National Instruments)</div>
+								</div>
+								<div class="em-card alt2" data-animate>
+									<h3>Safety &amp; Productivity</h3>
+									<div class="lbl">Products &amp; solutions</div>
+									<ul><li>Professional mechanical &amp; electrical tools</li><li>Electrical installation &amp; connection tech</li><li>Diagnostic &amp; maintenance equipment</li><li>Connected devices &amp; related software</li></ul>
+									<div class="lbl">Customer value</div>
+									<ul><li>Workplace safety &amp; reliability</li><li>Productivity in install, maintenance, repair</li></ul>
+									<div class="em-brands"><b>Brands:</b> Appleton, Branson, Greenlee, KLAUKE, RIDGID</div>
+								</div>
+							</div>
 						</div>
+						<div class="em-foot"><div class="em-cite">Test &amp; Measurement <b>[1]</b>; Automation Solutions <b>[2]</b>; Measurement Instrumentation <b>[9]</b>; Safety &amp; Productivity <b>[12]</b>; FY2025 10-K <b>[23]</b>.</div><div class="em-pageno">04</div></div>
 					</div>
 				</section>
 
+				<!-- 05 Value proposition -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Value proposition</div></div>
+						<div class="em-head"><h1>Value proposition</h1><div class="em-rule"></div></div>
+						<div class="em-body" style="justify-content:center;">
+							<div class="em-statement" data-animate>
+								<div class="lead">Overall value proposition</div>
+								<p>Helping industrial customers improve operational efficiency, reliability, safety and productivity, by combining automation technologies, measurement and control solutions, industrial software, and related products and services.</p>
+							</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">Automation Solutions <b>[2]</b>; Automation Systems <b>[3]</b>; Discrete Automation <b>[7]</b>; Final Control <b>[8]</b>; Measurement Instrumentation <b>[9]</b>; Safety &amp; Productivity <b>[12]</b>; Test &amp; Measurement <b>[1]</b>; Brands <b>[5]</b>; FY2025 10-K <b>[23]</b>.</div><div class="em-pageno">05</div></div>
+					</div>
+				</section>
+
+				<!-- 06 Business structure FY2026 -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Business structure</div></div>
+						<div class="em-head"><h1>Business structure in fiscal 2026</h1><div class="em-sub">Do not confuse the corporate portfolio categories with the reported financial groups</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-cols c3">
+								<div class="em-card" data-animate><h3>Software &amp; Systems</h3><ul><li>Control Systems &amp; Software</li><li>Test &amp; Measurement</li></ul></div>
+								<div class="em-card alt" data-animate><h3>Intelligent Devices</h3><ul><li>Sensors</li><li>Final Control</li></ul></div>
+								<div class="em-card alt2" data-animate><h3>Safety &amp; Productivity</h3><ul><li>Reported separately in the current financial reporting structure</li></ul></div>
+							</div>
+							<div class="em-note" style="margin-top:14px;" data-animate><b>Key distinction:</b> "Discrete Automation" remains a corporate portfolio category, but it is <b>not</b> a standalone reported group in the current structure; its businesses were redistributed.</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">10-Q, Dec 2025 <b>[24]</b>.</div><div class="em-pageno">06</div></div>
+					</div>
+				</section>
+
+				<!-- 07 Business segments -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Business segments</div></div>
+						<div class="em-head"><h1>Business segments</h1><div class="em-sub">Five reported segments as of fiscal 2026</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-grid g3" style="align-items: normal !important;">
+								<div class="em-cell" data-animate><div class="big">Control Systems &amp; Software</div><ul><li>Automation systems, industrial software, AI solutions</li><li>Leverage data; optimize at facility &amp; enterprise level</li></ul></div>
+								<div class="em-cell" data-animate><div class="big">Test &amp; Measurement</div><ul><li>Test platforms, modular hardware, measurement software</li><li>NI brand: automate testing, analyze data, streamline development</li></ul></div>
+								<div class="em-cell" data-animate><div class="big">Sensors</div><ul><li>Sensors &amp; measuring instruments for key process variables</li><li>Assess plant conditions; optimize processes; operational safety</li></ul></div>
+								<div class="em-cell" data-animate><div class="big">Final Control</div><ul><li>Control &amp; regulation of liquid and gas flows</li><li>Valves, valve controllers, actuators, pressure regulators</li></ul></div>
+								<div class="em-cell" data-animate><div class="big">Safety &amp; Productivity</div><ul><li>Tools, connected devices, diagnostic solutions</li><li>Support construction, maintenance &amp; industrial work</li></ul></div>
+								<div class="em-cell" style="justify-content:center;border-top:3px solid var(--brand);" data-animate><div class="big" style="color:var(--brand)">Two reporting groups</div><ul><li><b>Software &amp; Systems</b> = Control Systems &amp; Software + Test &amp; Measurement</li><li><b>Intelligent Devices</b> = Sensors + Final Control</li></ul></div>
+							</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">10-Q, Dec 2025 <b>[24]</b>.</div><div class="em-pageno">07</div></div>
+					</div>
+				</section>
+
+				<!-- 08 Brands -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Brands</div></div>
+						<div class="em-head"><h1>Brands</h1><div class="em-sub">A broad house of brands across automation, measurement, control and tools</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-chips" data-animate>
+								<span class="em-chip key">DeltaV</span><span class="em-chip key">Ovation</span><span class="em-chip key">AspenTech</span><span class="em-chip key">NI</span><span class="em-chip key">Rosemount</span><span class="em-chip key">Fisher</span><span class="em-chip key">Micro Motion</span>
+								<span class="em-chip">AMS</span><span class="em-chip">Aperio</span><span class="em-chip">AEV</span><span class="em-chip">Anderson Greenwood</span><span class="em-chip">Appleton</span><span class="em-chip">ASCO</span><span class="em-chip">AVENTICS</span><span class="em-chip">Baumann</span><span class="em-chip">Bettis</span><span class="em-chip">Biffi</span><span class="em-chip">Branson</span><span class="em-chip">Cash Valve</span><span class="em-chip">Clarkson</span><span class="em-chip">Crosby</span><span class="em-chip">Damcos</span><span class="em-chip">EL-O-Matic</span><span class="em-chip">Enardo</span><span class="em-chip">Flexim</span><span class="em-chip">Greenlee</span><span class="em-chip">Guardian</span><span class="em-chip">Gulde</span><span class="em-chip">Hytork</span><span class="em-chip">Keystone</span><span class="em-chip">KLAUKE</span><span class="em-chip">KTM</span><span class="em-chip">Kunkle</span><span class="em-chip">Lunkenheimer</span><span class="em-chip">Movicon</span><span class="em-chip">Nelson</span><span class="em-chip">Neotecha</span><span class="em-chip">Ovation Green</span><span class="em-chip">PACSystems</span><span class="em-chip">Paine</span><span class="em-chip">Plantweb Insight</span><span class="em-chip">ProTeam</span><span class="em-chip">RIDGID</span><span class="em-chip">Roxar</span><span class="em-chip">Sempell</span><span class="em-chip">Shafer</span><span class="em-chip">SolaHD</span><span class="em-chip">Spectrex</span><span class="em-chip">Spence Valve</span><span class="em-chip">Tartarini</span><span class="em-chip">TESCOM</span><span class="em-chip">TopWorx</span><span class="em-chip">Vanessa</span><span class="em-chip">Yarway</span>
+							</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">Brands <b>[5]</b>.</div><div class="em-pageno">08</div></div>
+					</div>
+				</section>
+
+				<!-- 09 Customers -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Customers</div></div>
+						<div class="em-head"><h1>Customers</h1><div class="em-sub">Serving asset-intensive industries with distinct operating needs</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<table class="em-table" data-animate>
+								<tr><th style="width:26%">Customer group</th><th style="width:28%">Company / organization</th><th>Needs</th></tr>
+								<tr><td><b>Chemical &amp; petrochemical</b></td><td>LyondellBasell, LANXESS</td><td>Process control, plant safety, emissions reduction</td></tr>
+								<tr><td><b>Energy &amp; oil / gas</b></td><td>Equinor, Aramco</td><td>Precision measurement, minimizing downtime, yield optimization</td></tr>
+								<tr><td><b>Mining &amp; raw materials</b></td><td>South32, Lithium Americas Corp.</td><td>Throughput optimization, remote monitoring, automation in harsh environments</td></tr>
+								<tr><td><b>Energy generation &amp; gas infrastructure</b></td><td>Intermountain Power Agency, Enag&aacute;s</td><td>Grid monitoring, security of supply, decarbonization / hydrogen integration</td></tr>
+								<tr><td><b>Water &amp; wastewater</b></td><td>Sacramento Regional County Sanitation District</td><td>Process control (Ovation DCS), flow &amp; level measurement, pump control</td></tr>
+								<tr><td><b>Industrial manufacturers (automotive)</b></td><td>Subaru (NI), Jaguar Land Rover (NI)</td><td>High-speed test automation, hardware-in-the-loop, ADAS / EV validation</td></tr>
+							</table>
+						</div>
+						<div class="em-foot"><div class="em-cite">LANXESS <b>[14]</b>; Intermountain Power <b>[15]</b>; LyondellBasell <b>[16]</b>; South32 <b>[17]</b>; Lithium Americas <b>[18]</b>; Aramco <b>[20]</b>; Equinor <b>[21]</b>; Enag&aacute;s <b>[22]</b>; SRCSD case <b>[27]</b>; Subaru HIL <b>[28]</b>; Jaguar Land Rover / NI <b>[29]</b>.</div><div class="em-pageno">09</div></div>
+					</div>
+				</section>
+
+				<!-- 10 Position in value chain -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Value chain</div></div>
+						<div class="em-head"><h1>Emerson's position in the value chain</h1><div class="em-sub">Two complementary roles in industrial projects</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-two" style="flex:0 0 auto;">
+								<div class="pane b-brand" data-animate><h3>Technology supplier</h3><ul><li>Delivers sensors, valves and control technology to machine and plant manufacturers</li><li>Technologies are integrated into machines and industrial plants</li></ul></div>
+								<div class="pane b-accent" data-animate><h3>Main Automation Contractor (MAC)</h3><ul><li>Direct collaboration with plant operators</li><li>Coordinates plant automation</li><li>Integrates control systems, devices and software</li></ul></div>
+							</div>
+							<div class="em-note" style="margin-top:12px;" data-animate><b>Longview Power Plant example:</b> Emerson managed and set up the entire automation system as MAC in a large modernization project.</div>
+							<div class="em-note ember" style="margin-top:10px;" data-animate><b>B2B implication:</b> Emerson engages machine builders, plant-engineering firms and technical managers; buying decisions turn on technical compatibility, reliability, integrability and total cost of ownership (TCO).</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">OEM page <b>[10]</b>; OEM/EPC asset monitoring <b>[11]</b>; Longview Power Plant (2019) <b>[13]</b>; FY2025 10-K <b>[23]</b>; MAC brochure (2015) <b>[26]</b>.</div><div class="em-pageno">10</div></div>
+					</div>
+				</section>
+
+				<!-- 11 Competitive landscape position -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Competitive position</div></div>
+						<div class="em-head"><h1>Competitive landscape position</h1><div class="em-sub">Global provider of industrial automation and control technologies</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-stats" data-animate>
+								<div class="em-stat"><div class="num">$18B</div><div class="lab">FY2025 net sales</div></div>
+								<div class="em-stat"><div class="num ember">~40%</div><div class="lab">Software &amp; Systems served-market leading position</div></div>
+								<div class="em-stat"><div class="num ember">~45%</div><div class="lab">Intelligent Devices served-market leading position</div></div>
+								<div class="em-stat"><div class="num">$160B</div><div class="lab">Combined served market (S&amp;S $85B + ID $75B), 2025</div></div>
+							</div>
+							<div style="display:flex; gap:16px; margin-top:14px; flex:1;">
+								<div class="em-card" style="flex:1" data-animate><h3>Number-one positions reported by Emerson</h3><ul><li>DeltaV: Control Systems</li><li>Ovation: Control Systems (Power &amp; Water)</li><li>AspenTech: Modeling &amp; Optimization Software</li><li>NI: Test Automation Systems</li></ul></div>
+								<div class="em-card alt" style="flex:1" data-animate><h3>Intelligent Devices brand positions</h3><ul><li>Rosemount: Pressure &amp; Temperature Sensors</li><li>Micro Motion: Coriolis Flow Sensors</li><li>Fisher: Control Valves</li></ul></div>
+								<div class="em-card alt2" style="flex:1" data-animate><h3>B2B implication</h3><ul><li>Competes with different companies by product line</li><li>Faces both larger corporations and smaller specialists</li><li>Market-leading in many product lines</li></ul></div>
+							</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">Automation Solutions <b>[2]</b>; Investor Conference (2025) <b>[19]</b>; FY2025 10-K <b>[23]</b>.</div><div class="em-pageno">11</div></div>
+					</div>
+				</section>
+
+				<!-- 12 Competitors -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Competitors</div></div>
+						<div class="em-head"><h1>Competitors</h1><div class="em-sub">A fragmented field: rivals differ by product line</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-chips" data-animate>
+								<span class="em-chip key">ABB</span><span class="em-chip key">Siemens</span><span class="em-chip key">Schneider Electric</span><span class="em-chip key">Rockwell Automation</span><span class="em-chip key">Honeywell</span>
+								<span class="em-chip">Yokogawa Electric</span><span class="em-chip">Mitsubishi Electric</span><span class="em-chip">Omron</span><span class="em-chip">General Electric</span><span class="em-chip">Endress+Hauser</span><span class="em-chip">Phoenix Contact</span><span class="em-chip">HIMA</span><span class="em-chip">Bosch Rexroth</span><span class="em-chip">FANUC</span><span class="em-chip">Beckhoff Automation</span><span class="em-chip">B&amp;R Industrial Automation</span><span class="em-chip">Advantech</span><span class="em-chip">MOXA</span><span class="em-chip">CoreTigo</span><span class="em-chip">Johnson Controls</span>
+							</div>
+							<div class="em-note" style="margin-top:16px;" data-animate><b>Reading the field:</b> Emerson rarely faces one "all-in" rival. It competes against diversified giants (ABB, Siemens, Schneider, Honeywell) in some lines and focused specialists in others.</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">Owler competitors <b>[30]</b>; Mordor market report <b>[31]</b>.</div><div class="em-pageno">12</div></div>
+					</div>
+				</section>
+
+				<!-- 13 Key differentiators -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Differentiators</div></div>
+						<div class="em-head"><h1>Key differentiators in B2B markets</h1><div class="em-sub">Why customers may choose an integrated industrial technology partner</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-cols c3">
+								<div class="em-card" data-animate><h3>Hardware + software integration</h3><ul><li>Combines industrial software with automation systems and hardware</li><li>Connects plant control, data analysis and process optimization</li></ul></div>
+								<div class="em-card alt" data-animate>
+									<h3>Global service footprint &amp; installed base</h3>
+									<div class="em-stats" style="margin:6px 0;">
+										<div class="em-stat" style="padding:10px 12px;min-width:0;"><div class="num" style="font-size:26px;">~200</div><div class="lab" style="font-size:11px;">Service centers</div></div>
+										<div class="em-stat" style="padding:10px 12px;min-width:0;"><div class="num" style="font-size:22px;">5,300+</div><div class="lab" style="font-size:11px;">Maintenance events, 2025</div></div>
+									</div>
+									<ul><li><b>80,000+</b> valves serviced in 2025</li><li>Sustained advantage through a global service footprint</li></ul>
+								</div>
+								<div class="em-card alt2" data-animate><h3>Broad technology portfolio</h3><ul><li>Industrial software, control systems, sensors, valve technology, test &amp; measurement</li><li>Covers the varied requirements of industrial automation</li></ul></div>
+							</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">Investor Conference (2025) <b>[19]</b>; 2026 Proxy <b>[25]</b>.</div><div class="em-pageno">13</div></div>
+					</div>
+				</section>
+
+				<!-- =========================================================
+				     PART 2 — Emerson's strategy & future (Ali)
+				     ========================================================= -->
+
+				<!-- DIVIDER -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide em-divider" data-animate>
+						<div class="eyebrow">Part 2</div>
+						<h1>Emerson's strategy &amp; future</h1>
+						<div class="subtitle">How Emerson competes, grows and prepares for the future, and what could enable or prevent it.</div>
+						<div class="rule"></div>
+						<div class="pageno">Presented by Ali</div>
+					</div>
+				</section>
+
+				<!-- 14 Corporate strategy -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Strategy &amp; Future</div></div>
+						<div class="em-head"><h1>Corporate strategy: connecting more of the industrial workflow</h1><div class="em-sub">Emerson is moving from selling equipment to running more of the customer's operation</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div style="display:flex; gap:22px; flex:1; align-items: center;">
+								<div style="flex:0 0 38%; display:flex; flex-direction:column; gap:12px;">
+									<ul class="em-list" data-animate>
+										<li>From discrete equipment to <b>automated, connected operations</b></li>
+										<li>A larger role <b>across the customer's operating lifecycle</b></li>
+									</ul>
+									<div data-animate>
+										<div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); margin-bottom:8px;">Five growth markets</div>
+										<div class="em-chips"><span class="em-chip key">Power</span><span class="em-chip key">LNG</span><span class="em-chip key">Life sciences</span><span class="em-chip key">Semiconductors</span><span class="em-chip key">Aerospace &amp; defense</span></div>
+									</div>
+								</div>
+								<div style="flex:1;">
+									<div class="em-stack" data-animate>
+										<div class="outcome">Customer outcome: better production decisions, less manual coordination</div>
+										<div class="em-arrow-up">&#9650; more value, deeper relationship</div>
+										<div class="em-layer"><div class="ln">Software &amp; Decisions</div><div class="ld">Optimize: AspenTech</div></div>
+										<div class="em-layer"><div class="ln">Operational Data</div><div class="ld">Contextualize: Inmation data fabric</div></div>
+										<div class="em-layer"><div class="ln">Control Systems</div><div class="ld">Act: DeltaV, Ovation</div></div>
+										<div class="em-layer"><div class="ln">Devices / Sensors</div><div class="ld">Measure: Rosemount, Micro Motion</div></div>
+									</div>
+									<div class="emd-cap" style="font-size:11px; font-style:italic; margin-top:8px;">Layered view is an analytical interpretation of Emerson's strategy.</div>
+								</div>
+							</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">Emerson 2025 Investor Conference (Nov 2025) <b>[19]</b>; DeltaV v16 release (Jan 2026) <b>[47]</b>; AspenTech Inmation (May 2026) <b>[48]</b>.</div><div class="em-pageno">14</div></div>
+					</div>
+				</section>
+
+				<!-- 15 Strategic priorities -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Strategy &amp; Future</div></div>
+						<div class="em-head"><h1>Strategic priorities: how Emerson plans to execute</h1><div class="em-sub">Direction becomes execution: each priority paired with an indicator to watch</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-grid g2" style="flex:0 0 auto;">
+								<div class="em-cell" data-animate><div class="big">1 &middot; Grow in the five chosen markets</div><ul><li>Relevant solutions &rarr; <b>watch: underlying sales growth</b></li></ul></div>
+								<div class="em-cell" data-animate><div class="big">2 &middot; Integrate software + automation</div><ul><li>Make the acquisitions work together &rarr; <b>watch: product integration &amp; adoption</b></li></ul></div>
+								<div class="em-cell" data-animate><div class="big">3 &middot; Convert integration into gains</div><ul><li>Sustained operating improvement &rarr; <b>watch: synergy run-rate</b></li></ul></div>
+								<div class="em-cell" data-animate><div class="big">4 &middot; Fund investment &amp; returns</div><ul><li>From cash generation &rarr; <b>watch: free cash flow</b></li></ul></div>
+							</div>
+							<div class="em-note ember" style="margin-top:12px;" data-animate><b>FY2028 targets:</b> ~$21bn sales &middot; 30% adjusted segment EBITA margin <i>(targets, not results)</i>. &nbsp;<b>Progress in Q3 FY2026:</b> $4.873bn sales, +6% underlying, 28.5% margin <i>(one quarter &ne; the annual goal)</i>.</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">Emerson 2025 Investor Conference <b>[19]</b>; Q3 FY2026 results (4 Aug 2026) <b>[32]</b>; FY2025 results (5 Nov 2025) <b>[34]</b>.</div><div class="em-pageno">15</div></div>
+					</div>
+				</section>
+
+				<!-- 16 M&A timeline -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Strategy &amp; Future</div></div>
+						<div class="em-head"><h1>Mergers &amp; acquisitions: software in, unrelated exposure out</h1><div class="em-sub">Four years of deliberate acquisitions and divestitures</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-timeline" data-animate>
+								<div class="em-tl-node"><div class="dot"></div><div class="em-tl-yr">2022</div><div class="em-tl-ttl">AspenTech control</div><div class="em-tl-dsc">Contributes cash + software for a 55% stake</div></div>
+								<div class="em-tl-node"><div class="dot"></div><div class="em-tl-yr">2023</div><div class="em-tl-ttl">NI acquired</div><div class="em-tl-dsc">$8.2bn equity value, adds test &amp; measurement</div></div>
+								<div class="em-tl-node exit"><div class="dot"></div><div class="em-tl-yr">2023&ndash;24</div><div class="em-tl-ttl">Copeland exited</div><div class="em-tl-dsc">Staged exit of HVAC, releases capital</div></div>
+								<div class="em-tl-node"><div class="dot"></div><div class="em-tl-yr">2025</div><div class="em-tl-ttl">AspenTech full</div><div class="em-tl-dsc">Buys remaining shares (~$7.2bn, $265/sh)</div></div>
+							</div>
+							<div style="display:flex; gap:16px; margin-top:16px; font-size:13px; color:var(--muted); font-weight:600;">
+								<span><span style="display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--brand);vertical-align:middle;margin-right:6px;"></span>Capability added</span>
+								<span><span style="display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--muted);vertical-align:middle;margin-right:6px;"></span>Business exited</span>
+							</div>
+							<div class="em-note" style="margin-top:32px;" data-animate><b>One precision point:</b> the 2022 and 2025 AspenTech deals are the <b>same company at two stages</b>: taking control, then buying out the minority. Do not double-count them. <span style="color:var(--muted)">Small 2026 update: Glue (AI-assisted test planning), terms undisclosed.</span></div>
+						</div>
+						<div class="em-foot"><div class="em-cite">AspenTech 8-K (May 2022) <b>[37]</b>; NI completion (Oct 2023) <b>[36]</b>; Copeland completion <b>[40][41]</b>; AspenTech full ownership (Mar 2025) <b>[39]</b>.</div><div class="em-pageno">16</div></div>
+					</div>
+				</section>
+
+				<!-- 17 M&A strategic impact -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Strategy &amp; Future</div></div>
+						<div class="em-head"><h1>M&amp;A strategic impact: is the transformation working?</h1><div class="em-sub">Judge three things separately: capabilities gained, savings reported, value still unproven</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-grid g3">
+								<div class="em-cell" data-animate><div class="ch">Capabilities gained</div><ul><li>NI &rarr; automated testing</li><li>AspenTech &rarr; full ownership of industrial software</li><li>DeltaV 16 historian built on AspenTech = real integration</li></ul></div>
+								<div class="em-cell" data-animate><div class="ch">Reported savings</div><ul><li><b>NI:</b> $165m target &rarr; $200m run-rate by FY2025</li><li><b>AspenTech:</b> $50m realized FY2025; $100m run-rate pulled forward to FY2026</li></ul></div>
+								<div class="em-cell hl" data-animate><div class="ch" style="color:var(--ember)">Still to prove</div><ul><li>Customer <b>adoption</b> at scale</li><li>Profitable <b>returns</b> vs. the price paid</li><li>Integration &ne; automatic customer value</li></ul></div>
+							</div>
+							<div class="em-note" style="margin-top:12px;" data-animate><b>Two honest notes:</b> a run-rate is an annualized pace, not cash already banked. Buying the rest of AspenTech raised Emerson's economic interest; it did not add a brand-new revenue base.</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">FY2025 results <b>[34]</b>; FY2025 earnings call <b>[61]</b>; DeltaV v16 <b>[47]</b>.</div><div class="em-pageno">17</div></div>
+					</div>
+				</section>
+
+				<!-- 18 Innovation -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Strategy &amp; Future</div></div>
+						<div class="em-head"><h1>Innovation: how Emerson builds useful capability</h1><div class="em-sub">Internal development + customer collaboration + acquired expertise</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div style="display:flex; gap:18px; flex:1; align-items: center;">
+								<div style="flex:0 0 42%; display:flex; flex-direction:column; gap:12px;">
+									<div class="em-stat" data-animate style="flex:0 0 auto;"><div class="num">8.1%</div><div class="lab">of sales on R&amp;D + engineering + customer-funded development (FY25 &amp; FY24, up from 6.9% FY23), a broad measure, not pure R&amp;D</div></div>
+									<ul class="em-list" data-animate style="gap:8px;">
+										<li style="font-size:15px; padding-top: 5px;">New <b>Chief Technology &amp; AI Officer</b> (Aug 2026)</li>
+										<li style="font-size:15px; padding-top: 5px">&euro;1.9m NI R&amp;D project, Debrecen (Hungary)</li>
+									</ul>
+									<div data-animate>
+										<div style="font-size:12px; margin-top: 12px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); margin-bottom:6px;">Three routes</div>
+										<div class="em-chips"><span class="em-chip">Build: DeltaV 16</span><span class="em-chip">Acquire: Glue</span><span class="em-chip">Collaborate: Roche</span></div>
+									</div>
+								</div>
+								<div style="flex:1; display:flex; flex-direction:column; gap:12px;">
+									<div data-animate>
+										<div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); margin-bottom:8px;">From capability to adoption</div>
+										<div class="em-flow"><span class="st">Research</span><span class="ar">&rarr;</span><span class="st">Pilot</span><span class="ar">&rarr;</span><span class="st">Product launch</span><span class="ar">&rarr;</span><span class="st b">Established deployment</span></div>
+									</div>
+									<div style="margin-top: 20px;" class="em-note" data-animate><b>Separate shipped from announced:</b> AspenTech's AVA advisors are available now; NI's "Nigel" enhancements are a late-2026 roadmap.</div>
+									<div class="em-note ember" data-animate><b>Industrial adoption gate:</b> reliability, validation, security and interoperability (NIST OT guidance), so real adoption is staged.</div>
+								</div>
+							</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">FY2025 10-K <b>[23]</b>; AspenTech AVA (May 2026) <b>[49]</b>; NI Connect / Nigel (May 2026) <b>[50]</b>.</div><div class="em-pageno">18</div></div>
+					</div>
+				</section>
+
+				<!-- 19 Innovation in practice -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Strategy &amp; Future</div></div>
+						<div class="em-head"><h1>Innovation in practice: two documented cases</h1><div class="em-sub">How optimization and testing create value, with the limits kept visible</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-two">
+								<div class="pane b-brand" data-animate>
+									<h3>SABIC: utility optimization</h3>
+									<div class="step">Problem</div><div class="step-txt">Each boiler tuned alone &ne; the whole site running efficiently</div>
+									<div class="step">Solution</div><div class="step-txt">Aspen Utilities Planner models steam, air &amp; boilers together</div>
+									<div class="step">Result</div><div class="step-txt"><b>~130 GJ/hour</b> energy gain (&asymp; 60,000 t/yr CO&#8322; on stated assumptions)</div>
+									<div class="caveat">2021 customer case; emissions figure is an annualized estimate, not audited.</div>
+								</div>
+								<div class="pane b-accent" data-animate>
+									<h3>Subaru: automated testing</h3>
+									<div class="step">Problem</div><div class="step-txt">Validating a hybrid motor controller takes huge manual test time</div>
+									<div class="step">Solution</div><div class="step-txt">NI hardware-in-the-loop: real controller + simulated motor, automated</div>
+									<div class="step">Result</div><div class="step-txt"><b>118 hrs</b> vs. an estimated <b>2,300 hrs</b> manual &asymp; ~95% less test-execution time</div>
+									<div class="caveat">Undated case; baseline is an estimate; applies to these tests, not the whole program.</div>
+								</div>
+							</div>
+							<div class="em-note" style="margin-top:12px;" data-animate><b>Both show capability value</b>, not proof of gains from Emerson's later ownership.</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">SABIC case, AspenTech (2021) <b>[52]</b>; Subaru case, NI, customer-authored <b>[28]</b>.</div><div class="em-pageno">19</div></div>
+					</div>
+				</section>
+
+				<!-- 20 Marketing -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Strategy &amp; Future</div></div>
+						<div class="em-head"><h1>Marketing: winning industrial customers through proof, not pitch</h1><div class="em-sub">B2B go-to-market: a buying group persuaded by evidence over a long cycle</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div data-animate>
+								<div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); margin-bottom:8px;">An illustrative plant-modernization buyer journey</div>
+								<div class="em-flow"><span class="st">Downtime spotted<br><small style="color:var(--muted);font-weight:500;">Operations</small></span><span class="ar">&rarr;</span><span class="st">Requirements<br><small style="color:var(--muted);font-weight:500;">Engineering</small></span><span class="ar">&rarr;</span><span class="st">Integration &amp; security<br><small style="color:var(--muted);font-weight:500;">IT / OT</small></span><span class="ar">&rarr;</span><span class="st">Commercial terms<br><small style="color:var(--muted);font-weight:500;">Procurement</small></span><span class="ar">&rarr;</span><span class="st">Lifecycle economics<br><small style="color:var(--muted);font-weight:500;">Management</small></span><span class="ar">&rarr;</span><span style="margin-top: 6px;" class="st b">Pilot &amp; phased rollout</span></div>
+							</div>
+							<div class="em-cols c3" style="margin-top:16px;">
+								<div class="em-card" data-animate><h3>Channels</h3><ul><li>Direct sales is the main worldwide route</li><li>Backed by reps, distributors &amp; specialized partners</li><li>Channels differ by business line</li></ul></div>
+								<div class="em-card alt" data-animate><h3>What wins the deal</h3><ul><li>Technical proof, pilots &amp; demos</li><li>Lifecycle cost, service &amp; support</li><li>Not a single clever pitch</li></ul></div>
+								<div class="em-card alt2" data-animate><h3>Lifecycle, not one-off</h3><ul><li>Impact Partner service network (Feb 2025)</li><li>DeltaV Flex pay-for-use licensing</li></ul></div>
+							</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">FY2025 10-K <b>[23]</b>; Impact Partners expansion (Feb 2025) <b>[53]</b>; NI integration services <b>[54]</b>. <i>Buyer journey = analytical example.</i></div><div class="em-pageno">20</div></div>
+					</div>
+				</section>
+
+				<!-- 21 Communication -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Strategy &amp; Future</div></div>
+						<div class="em-head"><h1>Communication: making the strategy credible to each audience</h1><div class="em-sub">The same direction needs different evidence for different audiences</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-grid g3" style="flex:0 0 auto;">
+								<div class="em-cell" data-animate><div class="ch">Investors</div><div class="big">Strategy, targets, portfolio direction</div><ul><li>2025 Investor <br />Conference</li></ul></div>
+								<div class="em-cell" data-animate><div class="ch">Engineers</div><div class="big">Technical capability: how it works</div><ul><li>Product announcements, demos</li></ul></div>
+								<div class="em-cell" data-animate><div class="ch">Customers &amp; peers</div><div class="big">Real operating problems solved</div><ul><li>User events: OPTIMIZE, NI Connect</li></ul></div>
+							</div>
+							<div class="em-note" style="margin-top:12px;" data-animate><b>Marketing vs. communication:</b> marketing = whom Emerson sells to &amp; how (slide 20); communication = what it says, where, and how credible. <b>Dated examples:</b> OPTIMIZE 26 preview &middot; NI Connect customer keynotes &middot; AVA launch + community.</div>
+							<div class="em-note ember" style="margin-top:10px;" data-animate><b>Analyst's caution:</b> a published agenda shows what was <i>planned</i>, not what it <i>achieved</i>; planned &ne; proven effective.</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">Investor Conference <b>[19]</b>; OPTIMIZE 26 preview <b>[55]</b>; NI Connect <b>[50]</b>; AVA <b>[49]</b>.</div><div class="em-pageno">21</div></div>
+					</div>
+				</section>
+
+				<!-- 22 Challenges -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Strategy &amp; Future</div></div>
+						<div class="em-head"><h1>Challenges: what could prevent success</h1><div class="em-sub">Ranked by strategic materiality (our judgment, not statistical probability)</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-ranked">
+								<div class="em-rank" data-animate><div class="r">1</div><div class="rc"><div class="rt">Turning integration into real returns</div><div class="rd">Savings are reported, but value needs profitable adoption, and AspenTech borrowing raised interest expense.</div></div></div>
+								<div class="em-rank" data-animate><div class="r">2</div><div class="rc"><div class="rt">Industrial demand &amp; project timing</div><div class="rd">Big capital projects slip with the economy, financing and region; geographic performance is uneven.</div></div></div>
+								<div class="em-rank" data-animate><div class="r">3</div><div class="rc"><div class="rt">Reliable, secure adoption in existing plants</div><div class="rd">Legacy systems + OT safety needs force slow, staged rollouts, raising cost and slowing scale.</div></div></div>
+								<div class="em-rank" data-animate><div class="r">4</div><div class="rc"><div class="rt">Competitors investing too</div><div class="rd">Siemens + NVIDIA deepened an industrial-AI partnership (Jan 2026), so differentiation must be earned on outcomes.</div></div></div>
+							</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">FY2025 results / 10-Q <b>[34][33]</b>; NIST OT guidance <b>[58]</b>; Siemens &amp; NVIDIA (Jan 2026) <b>[56]</b>.</div><div class="em-pageno">22</div></div>
+					</div>
+				</section>
+
+				<!-- 23 Opportunities -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Strategy &amp; Future</div></div>
+						<div class="em-head"><h1>Opportunities: where Emerson can plausibly grow</h1><div class="em-sub">Ranked by Emerson's ability to serve the need, not just by market size</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-ranked">
+								<div class="em-rank" data-animate><div class="r">1</div><div class="rc"><div class="rt">Power &amp; grid investment <span style="font-weight:500;color:var(--muted);font-size:12px;">&middot; 3&ndash;5 yrs</span></div><div class="rd">Surging electricity demand (IEA: data-centre use ~945 TWh by 2030) &rarr; control &amp; grid-management capabilities.</div></div></div>
+								<div class="em-rank" data-animate><div class="r">2</div><div class="rc"><div class="rt">Modernizing installed operations <span style="font-weight:500;color:var(--muted);font-size:12px;">&middot; near-term</span></div><div class="rd">Improve visibility &amp; decisions on existing kit &rarr; DeltaV + Inmation, upgrades and support.</div></div></div>
+								<div class="em-rank" data-animate><div class="r">3</div><div class="rc"><div class="rt">Life-sciences technology transfer <span style="font-weight:500;color:var(--muted);font-size:12px;">&middot; 1&ndash;3 yrs</span></div><div class="rd">Move from development to production faster &rarr; DeltaV PKM / Roche collaboration.</div></div></div>
+								<div class="em-rank" data-animate><div class="r">4</div><div class="rc"><div class="rt">More complex test workflows <span style="font-weight:500;color:var(--muted);font-size:12px;">&middot; medium-term</span></div><div class="rd">Richer products need repeatable tests &rarr; NI platform + Glue acquisition.</div></div></div>
+							</div>
+							<div class="em-note ember" style="margin-top:10px;" data-animate><b>Discipline:</b> a growing market is an <i>opening</i>, not an <i>entitlement</i>; conversion depends on winning projects against real competitors.</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">IEA energy-from-AI (2025) <b>[57]</b>; Roche / DeltaV PKM (Nov 2025) <b>[51]</b>; NI Connect / Glue <b>[50][46]</b>.</div><div class="em-pageno">23</div></div>
+					</div>
+				</section>
+
+				<!-- 24 Strategic outlook -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Strategy &amp; Future</div></div>
+						<div class="em-head"><h1>Strategic outlook: advantage depends on adoption</h1><div class="em-sub">Our base case is steady progress with uneven execution, not overnight autonomy</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-grid g3" style="flex:0 0 auto;">
+								<div class="em-cell" data-animate><div class="ch">Base case</div><ul><li>Gradual customer adoption</li><li>Continued operating discipline</li></ul></div>
+								<div class="em-cell" data-animate><div class="ch">Upside</div><ul><li>Faster, multi-site adoption</li><li>Proven drop in integration effort</li></ul></div>
+								<div class="em-cell hl" data-animate><div class="ch" style="color:var(--ember)">Downside</div><ul><li>Delayed industrial spending</li><li>Hard implementations</li><li>Competitors erode differentiation</li></ul></div>
+							</div>
+							<div class="em-note" style="margin-top:12px;" data-animate><b>Three signals to watch:</b> (1) repeatable deployments linking more than one capability &middot; (2) underlying growth converting to revenue &middot; (3) cash generation vs. the cost of financing &amp; investment.</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">Emerson 2025 Investor Conference <b>[19]</b>; Q3 FY2026 results <b>[32]</b>; 10-Q <b>[33]</b>.</div><div class="em-pageno">24</div></div>
+					</div>
+				</section>
+
+				<!-- 25 Conclusion -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Strategy &amp; Future</div></div>
+						<div class="em-head"><h1>Conclusion: stronger portfolio, demanding execution</h1><div class="em-sub">A credible strategy, with success conditional on customer economics and dependable delivery</div><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-nums" data-animate>
+								<div class="em-num-item"><div class="n">1</div><div class="t"><b>Portfolio choices expanded the capabilities Emerson can offer</b><small>It now brings industrial software and testing, not just equipment.</small></div></div>
+								<div class="em-num-item"><div class="n">2</div><div class="t"><b>Integration has produced reported efficiencies and real product connections</b><small>Cost synergies, and DeltaV built on AspenTech technology.</small></div></div>
+								<div class="em-num-item"><div class="n">3</div><div class="t"><b>Customer adoption and returns will decide the lasting advantage</b><small>Buying a capability, shipping a product, and creating customer value are three different achievements.</small></div></div>
+							</div>
+							<div class="em-note ember" style="margin-top:14px;" data-animate><b>Verdict: cautiously positive.</b> The evidence supports a stronger set of capabilities and reported operating progress, not yet proof that all promised integration and AI benefits have materialized.</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">FY2025 results <b>[34]</b>; DeltaV v16 <b>[47]</b>; NIST OT guidance <b>[58]</b>.</div><div class="em-pageno">25</div></div>
+					</div>
+				</section>
+
+				<!-- Q&A -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide em-closing" data-animate>
+						<img class="logo" src="assets/images/emerson-logo.svg" alt="Emerson">
+						<h1>Questions?</h1>
+						<p>Thank you. We're happy to discuss Emerson's strategy, portfolio and outlook.</p>
+						<div class="rule"></div>
+						<div class="names">Ali &amp; Christina</div>
+					</div>
+				</section>
+
+				<!-- REFERENCES (unified 1-62) -->
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Appendix</div></div>
+						<div class="em-head"><h1>References (1 / 3)</h1><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-refs" style="font-size:10px;" data-animate>
+								<p><b>[1]</b> Emerson. (n.d.). Automated Test &amp; Measurement. emerson.com</p>
+								<p><b>[2]</b> Emerson. (n.d.). Automation Solutions for High-Stakes Operations. emerson.com</p>
+								<p><b>[3]</b> Emerson. (n.d.). Automation Systems. emerson.com</p>
+								<p><b>[4]</b> Emerson. (n.d.). Boundless Automation. emerson.com</p>
+								<p><b>[5]</b> Emerson. (n.d.). Brands. emerson.com</p>
+								<p><b>[6]</b> Emerson. (n.d.). Company History. emerson.com</p>
+								<p><b>[7]</b> Emerson. (n.d.). Discrete Automation. discreteautomation.emerson.com</p>
+								<p><b>[8]</b> Emerson. (n.d.). Final Control. emerson.com</p>
+								<p><b>[9]</b> Emerson. (n.d.). Measurement Instrumentation. emerson.com</p>
+								<p><b>[10]</b> Emerson. (n.d.). Original Equipment Manufacturers (OEM). emerson.com</p>
+								<p><b>[11]</b> Emerson. (n.d.). Reliability &amp; Asset Monitoring Solutions for OEMs &amp; EPCs. emerson.com</p>
+								<p><b>[12]</b> Emerson. (n.d.). Safety &amp; Productivity. emerson.com</p>
+								<p><b>[13]</b> Emerson. (2019). Emerson helps Longview Power Plant (PWS_009456). emerson.com</p>
+								<p><b>[14]</b> Emerson. (2022). LANXESS Selects Emerson for Advanced Automation Technology. emerson.com</p>
+								<p><b>[15]</b> Emerson. (2023). Emerson Software Helps Intermountain Power Agency. emerson.com</p>
+								<p><b>[16]</b> Emerson. (2024). LyondellBasell Selects Emerson to Modernize Automation. emerson.com</p>
+								<p><b>[17]</b> Emerson. (2025). Emerson Selected to Automate South32's Hermosa Project. emerson.com</p>
+								<p><b>[18]</b> Emerson. (2025). Emerson to Automate Lithium Americas' Thacker Pass Project. emerson.com</p>
+								<p><b>[19]</b> Emerson. (2025). 2025 Investor Conference: Engineering the Autonomous Future. ir.emerson.com</p>
+								<p><b>[20]</b> Emerson. (2026). Emerson and Aramco Deploy AI Solution for Refinery Yield. emerson.com</p>
+								<p><b>[21]</b> Emerson. (2026). Advanced Measurement Instrumentation Selected by Equinor. emerson.com</p>
+							</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">Sources cited by [number] in the footer of each slide. Research cutoff 25 October 2026.</div><div class="em-pageno">R1</div></div>
+					</div>
+				</section>
+
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Appendix</div></div>
+						<div class="em-head"><h1>References (2 / 3)</h1><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-refs" style="font-size:10px;" data-animate>
+								<p><b>[22]</b> Emerson. (2026). Selected by Spain's National Gas Grid Operator (Enag&aacute;s). emerson.com</p>
+								<p><b>[23]</b> Emerson Electric Co. (2025). Form 10-K, FY ended 30 Sep 2025. sec.gov</p>
+								<p><b>[24]</b> Emerson Electric Co. (2026). Form 10-Q, quarter ended 31 Dec 2025. sec.gov</p>
+								<p><b>[25]</b> Emerson Electric Co. (2026). Notice of 2026 Annual Meeting &amp; Proxy Statement. sec.gov</p>
+								<p><b>[26]</b> Emerson Process Management. (2015). Main Automation Contractor. emerson.com</p>
+								<p><b>[27]</b> Emerson Process Management, Power &amp; Water Solutions. (n.d.). Case Study: Sacramento Regional County Sanitation District. wateronline.com</p>
+								<p><b>[28]</b> Morita, T. / NI. (n.d.). Advancing Subaru Hybrid-Vehicle Testing via Hardware-in-the-Loop Simulation. ni.com</p>
+								<p><b>[29]</b> NI. (2022). Jaguar Land Rover and NI Join Forces on ADAS Solutions. ni.com</p>
+								<p><b>[30]</b> Owler, Inc. (n.d.). Emerson Competitors or Alternatives. owler.com</p>
+								<p><b>[31]</b> Practice Technologie &amp; Telekom. (2026). Industrial control for process automation market. mordorintelligence.com</p>
+								<p><b>[32]</b> Emerson. (2026). Q3 FY2026 results &amp; updated outlook. emerson.com</p>
+								<p><b>[33]</b> Emerson Electric Co. (2026). Form 10-Q, quarter ended 30 Jun 2026. sec.gov</p>
+								<p><b>[34]</b> Emerson. (2025). Q4 &amp; full-year 2025 results. emerson.com</p>
+								<p><b>[35]</b> Emerson. (2025). Q2 2025 earnings presentation. emerson.com</p>
+								<p><b>[36]</b> Emerson. (2023). Completion of the NI acquisition. emerson.com</p>
+								<p><b>[37]</b> Emerson. (2022). Form 8-K: completion of the AspenTech combination. sec.gov</p>
+								<p><b>[38]</b> Emerson &amp; AspenTech. (2025). Agreement to acquire remaining AspenTech shares. emerson.com</p>
+								<p><b>[39]</b> Emerson. (2025). Completion of the remaining AspenTech share acquisition. emerson.com</p>
+								<p><b>[40]</b> Blackstone &amp; Emerson. (2023). Completion of the majority Copeland acquisition. blackstone.com</p>
+								<p><b>[41]</b> Emerson. (2024). Completion of the sale of the remaining Copeland interest. emerson.com</p>
+								<p><b>[42]</b> Emerson. (2024). Q3 2024 results &amp; Copeland proceeds. emerson.com</p>
+							</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">Sources cited by [number] in the footer of each slide. Research cutoff 25 October 2026.</div><div class="em-pageno">R2</div></div>
+					</div>
+				</section>
+
+				<section data-background-color="#0F192E">
+					<div class="em-slide">
+						<div class="em-top"><div class="em-eyebrow">EMERSON <span class="sep">|</span> INDUSTRIAL MARKETING</div><div class="em-tag">Appendix</div></div>
+						<div class="em-head"><h1>References (3 / 3)</h1><div class="em-rule"></div></div>
+						<div class="em-body">
+							<div class="em-refs" style="font-size:10px;" data-animate>
+								<p><b>[43]</b> Emerson. (2024). Q4 &amp; full-year 2024 results. sec.gov</p>
+								<p><b>[44]</b> Hungarian Investment Promotion Agency. (2026). Emerson R&amp;D project in Debrecen, Hungary. hipa.hu</p>
+								<p><b>[45]</b> Emerson. (2026). Appointment of a Chief Technology &amp; AI Officer. emerson.com</p>
+								<p><b>[46]</b> Emerson. (2026). Acquisition of Glue Inc. emerson.com</p>
+								<p><b>[47]</b> Emerson. (2026). DeltaV version 16 LTS release. emerson.com</p>
+								<p><b>[48]</b> Emerson. (2026). Next-generation AspenTech Inmation industrial data fabric. emerson.com</p>
+								<p><b>[49]</b> Emerson. (2026). AspenTech AVA industrial AI platform. emerson.com</p>
+								<p><b>[50]</b> Emerson / NI. (2026). AI-ready test automation platform at NI Connect. ni.com</p>
+								<p><b>[51]</b> Emerson. (2025). DeltaV PKM Modality Library collaboration with Roche. emerson.com</p>
+								<p><b>[52]</b> Aspen Technology. (2021). SABIC utility system optimization case study. aspentech.com</p>
+								<p><b>[53]</b> Emerson. (2025). Expansion of measurement service coverage (Impact Partners). emerson.com</p>
+								<p><b>[54]</b> NI. (n.d.). NI integration services. ni.com</p>
+								<p><b>[55]</b> Emerson. (2026). OPTIMIZE 26 program preview. emerson.com</p>
+								<p><b>[56]</b> NVIDIA &amp; Siemens. (2026). Expanded industrial-AI partnership. nvidianews.nvidia.com</p>
+								<p><b>[57]</b> International Energy Agency. (2025). Energy demand from AI. iea.org</p>
+								<p><b>[58]</b> NIST. (2023). Guide to Operational Technology (OT) Security, SP 800-82 Rev. 3. nist.gov</p>
+								<p><b>[59]</b> Emerson. (2026). Schedule for Q4 &amp; full-year 2026 results. emerson.com</p>
+								<p><b>[60]</b> Emerson. (2024). AspenTech share proposal &amp; review of Safety &amp; Productivity. emerson.com</p>
+								<p><b>[61]</b> Emerson executives. (2025). FY2025 earnings call remarks (transcript). fool.com</p>
+								<p><b>[62]</b> Emerson Electric Co. (2025). Form 8-K: revised reporting structure. sec.gov</p>
+							</div>
+						</div>
+						<div class="em-foot"><div class="em-cite">Sources cited by [number] in the footer of each slide. Research cutoff 25 October 2026.</div><div class="em-pageno">R3</div></div>
+					</div>
+				</section>
 			</div>
 		</div>
 
-		<!-- reveal.js + plugins (only the three this template uses) -->
 		<script src="dist/reveal.js"></script>
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
-
-		<!-- Shared init + animation engine. Do NOT add another Reveal.initialize here. -->
 		<script src="core.js"></script>
+		<script>if(location.search.indexOf('static=1')>-1){document.documentElement.classList.add('em-static');}</script>
+		<script>
+		/* morphing bento field — BSP tiling split/merge, replicated from ai-ux-architecture */
+		(function(){
+			const field=document.getElementById('deckBento');
+			if(!field) return;
+			const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+			const COLS=16,ROWS=10,MINW=2,MINH=1,TARGET=32,MAXLEAF=48,MINLEAF=20;
+			let uid=0,root=null;const els=new Map();
+			const rnd=n=>Math.floor(Math.random()*n);
+			const makeLeaf=(x,y,w,h)=>({leaf:true,id:++uid,x,y,w,h});
+			function leaves(n,o){if(n.leaf)o.push(n);else{leaves(n.a,o);leaves(n.b,o);}return o;}
+			function mergeables(n,o){if(n.leaf)return o;if(n.a.leaf&&n.b.leaf)o.push(n);else{mergeables(n.a,o);mergeables(n.b,o);}return o;}
+			const canSplit=l=>(l.w>=2*MINW)||(l.h>=2*MINH);
+			function splitLeaf(l){
+				const vOK=l.w>=2*MINW,hOK=l.h>=2*MINH;
+				const vertical=(vOK&&hOK)?(Math.random()<l.w/(l.w+l.h)):vOK;
+				l.leaf=false;l.dir=vertical?'v':'h';
+				if(vertical){const cut=MINW+rnd(l.w-2*MINW+1);l.a=makeLeaf(l.x,l.y,cut,l.h);l.b=makeLeaf(l.x+cut,l.y,l.w-cut,l.h);}
+				else{const cut=MINH+rnd(l.h-2*MINH+1);l.a=makeLeaf(l.x,l.y,l.w,cut);l.b=makeLeaf(l.x,l.y+cut,l.w,l.h-cut);}
+				l.a.id=l.id;return l;
+			}
+			function rectStyle(el,l){el.style.left=(l.x/COLS*100)+'%';el.style.top=(l.y/ROWS*100)+'%';el.style.width=(l.w/COLS*100)+'%';el.style.height=(l.h/ROWS*100)+'%';}
+			function ensureEl(l,fromRect){
+				let el=els.get(l.id);
+				if(!el){
+					el=document.createElement('div');el.className='bento-cell';el.innerHTML='<span class="bi"></span>';
+					if(fromRect)rectStyle(el,fromRect);
+					field.appendChild(el);els.set(l.id,el);
+					requestAnimationFrame(()=>requestAnimationFrame(()=>{el.classList.add('on');rectStyle(el,l);}));
+				}
+				return el;
+			}
+			function maybeEmber(id){const el=els.get(id);if(!el)return;el.classList.toggle('ember',Math.random()<0.22);}
+			let timer=null;
+			function schedule(){timer=setTimeout(tick,2400+rnd(1400));}
+			function tick(){
+				const ls=leaves(root,[]);const splittable=ls.filter(canSplit);const merg=mergeables(root,[]);
+				let doSplit;
+				if(ls.length<=MINLEAF)doSplit=true;
+				else if(ls.length>=MAXLEAF)doSplit=false;
+				else doSplit=splittable.length&&(Math.random()<(ls.length<TARGET?0.62:0.42));
+				if(doSplit&&splittable.length){
+					const l=splittable[rnd(splittable.length)];
+					const parentRect={x:l.x,y:l.y,w:l.w,h:l.h};
+					splitLeaf(l);
+					rectStyle(ensureEl(l.a),l.a);
+					ensureEl(l.b,parentRect);
+					maybeEmber(l.a.id);maybeEmber(l.b.id);
+				}else if(merg.length){
+					const n=merg[rnd(merg.length)];const keep=n.a.id,drop=n.b.id;
+					n.leaf=true;n.id=keep;delete n.a;delete n.b;delete n.dir;
+					const kEl=els.get(keep);if(kEl)rectStyle(kEl,n);
+					const dEl=els.get(drop);
+					if(dEl){rectStyle(dEl,n);dEl.classList.remove('on');els.delete(drop);setTimeout(()=>dEl.remove(),1400);}
+				}
+				schedule();
+			}
+			root=makeLeaf(0,0,COLS,ROWS);
+			for(let i=0;i<24;i++){const s=leaves(root,[]).filter(canSplit);if(!s.length)break;splitLeaf(s[rnd(s.length)]);}
+			leaves(root,[]).forEach(l=>ensureEl(l));
+			const all=leaves(root,[]);if(all.length){const e=els.get(all[rnd(all.length)].id);if(e)e.classList.add('ember');}
+			if(!reduce.matches)schedule();
+		})();
+		</script>
 	</body>
 </html>

@@ -1,30 +1,39 @@
 # Slides Template
 
-A minimal, forkable [reveal.js](https://revealjs.com) presentation template with a built-in
-design language and a slide-entrance animation system. Fork it once per presentation.
+A minimal [reveal.js](https://revealjs.com) presentation template with a built-in design language
+and a slide-entrance animation system. Spin up a fresh, independent repo (with its own GitHub Pages
+URL) for every presentation.
 
 ## Quick start
 
 ```bash
-# from the project root, serve over http (needed for the plugins to load)
-python3 -m http.server 8000
+npm run slides
 # then open http://localhost:8000
 ```
 
-Or just open `index.html` directly in a browser (some features work best over http).
+Or use any static server (e.g. `python3 -m http.server 8000`). Serving over `http://` is needed so
+the reveal.js plugins load.
 
 Navigate with the arrow keys. Press `S` for speaker notes, `F` for fullscreen, `Esc` for the
 slide overview.
 
 ## How to use it for a new presentation
 
-1. **Fork / copy this repo** into a new repo for your presentation.
-2. Edit `index.html`:
+This repo is set up as a **GitHub template repository** — you don't fork it (GitHub won't let you
+fork a repo into the account that owns it, and forks would share one Pages URL). Instead:
+
+1. On GitHub, click **"Use this template" → "Create a new repository"**. This makes a brand-new,
+   independent repo in your account with its own GitHub Pages URL.
+   *(One-time, on this template repo: Settings → check **"Template repository"**.)*
+   *CLI alternative: `gh repo create my-talk --template <you>/slides-template --public`.*
+2. Clone the new repo and edit `index.html`:
    - change the `<title>` and the theme tokens in the `:root { ... }` block (colors + fonts),
    - replace the example slides with your own,
    - drop images into `assets/images/` and any linked files into `assets/files/`.
 3. Everything shared (layout, animations, reveal config) lives in `core.css` / `core.js` —
    you rarely need to touch those.
+4. In the new repo: **Settings → Pages → Source: GitHub Actions**, then push. Your deck goes live
+   at `https://<you>.github.io/<new-repo>/`.
 
 ## Adding entrance animations
 
